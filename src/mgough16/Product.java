@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 /**
  * Product Class has fields, constructor, and methods to get the product entered by the user.

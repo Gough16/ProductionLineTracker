@@ -1,15 +1,15 @@
-package mGough16;
+package mgough16;
 
 //Step 1: Import required packages
 
-import java.util.ArrayList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -71,8 +71,8 @@ public class Controller {
   private TextField textDateProduced;
 
   /**
-   * This method prints "added product" when the button Add Product is clicked It also implements
-   * the initializeDB method It also adds products to the table view
+   * <p> This method prints "added product" when the button Add Product is clicked It also
+   * implements the initializeDB method It also adds products to the table view.  </p>
    */
   @FXML
   protected void handleAddProductButtonAction() {
@@ -92,9 +92,8 @@ public class Controller {
   }
 
   /**
-   * This method will set the product selected from the list view into the textArea This method also
-   * prints "Product Recorded", and prints the production log products to the console when the
-   * button Recorded Production button is clicked
+   * This method adds items from the list view to the production Log when the production button is
+   * pressed.
    */
   @FXML
   protected void handleRecordProductionButtonAction() {
@@ -124,32 +123,32 @@ public class Controller {
 
   /**
    * This method initialized the database and connects to it The method will allow the addition of
-   * products into the database
+   * products into the database.
    */
   @FXML
   private void initializeDB() {
     //Database driver and url
-    final String JDBC_DRIVER = "org.h2.Driver";
-    final String DB_URL = "jdbc:h2:./resources/PLTDB";
+    final String Jdbc_Driver = "org.h2.Driver";
+    final String DB_Url = "jdbc:h2:./resources/PLTDB";
 
     //    //Database credentials
-    final String USER = "";
-    final String PASS = "";
-//    try{
-//      Properties prop = new Properties();
-//      prop.load(new FileInputStream("resources/properties"));
-//      PASS = prop.getProperty("password");
-//
-//    }catch (Exception ps){
-//      System.out.println(ps);
-//    }
+    final String User = "";
+    final String Pass = "";
+    //try{
+    // Properties prop = new Properties();
+    //  prop.load(new FileInputStream("resources/properties"));
+    //  PASS = prop.getProperty("password");
+
+    //}catch (Exception ps){
+    //  System.out.println(ps);
+    //}
 
     try {
       //Step 2: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
+      Class.forName(Jdbc_Driver);
 
       //Step 3: Open a connection
-      Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      Connection conn = DriverManager.getConnection(DB_Url, User, Pass);
 
       //Step 4: Execute a query
       Statement stmt = conn.createStatement();
@@ -172,7 +171,7 @@ public class Controller {
   /**
    * At run time this method: adds values to the comboBox and allows it to be editable gets the Item
    * Type choices and put them to the choice box adds items from the Observable Array list to the
-   * table view and list view
+   * table view and list view.
    */
   public void initialize() {
 
@@ -225,7 +224,7 @@ public class Controller {
   }
 
   /**
-   * This method adds values from the observable array list to the list view
+   * This method adds values from the observable array list to the list view.
    */
   private void loadProductList(ObservableList<Product> data) {
     //add data from the observable array list to the list view
@@ -233,7 +232,7 @@ public class Controller {
   }
 
   /**
-   * This method adds values to the observable array list
+   * This method adds values to the observable array list.
    */
   private ObservableList<Product> productList() {
     return FXCollections.observableArrayList(
@@ -245,7 +244,7 @@ public class Controller {
 
   /**
    * This method sets the values of the observable array list to the column it also adds the items
-   * to the table and list view
+   * to the table and list view.
    */
   private void setupProductLineTable(ObservableList<Product> data) {
 

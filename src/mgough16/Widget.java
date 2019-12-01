@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 public class Widget extends Product {
 

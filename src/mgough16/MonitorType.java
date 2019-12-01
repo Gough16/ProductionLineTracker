@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 /**
  * This MonitorType Enum stores the information for the different type of monitor displays.

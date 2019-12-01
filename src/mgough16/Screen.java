@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 /**
  * Screen class implements the ScreenSpec and gets the resolution, refresh rate and response time.

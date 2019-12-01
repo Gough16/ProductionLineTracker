@@ -1,10 +1,10 @@
-package mGough16;
+package mgough16;
 
 import java.util.Date;
 
 /**
  * This ProductionRecord Class gets the information from the user sets it to the production record
- * information
+ * information.
  *
  * @author Michael Gough
  * @version 2
@@ -41,7 +41,7 @@ public class ProductionRecord {
   }
 
   /**
-   * This method gets the production number and returns it
+   * This method gets the production number and returns it.
    *
    * @return product number
    */
@@ -50,7 +50,7 @@ public class ProductionRecord {
   }
 
   /**
-   * This method sets the production number
+   * This method sets the production number.
    *
    * @param productionNumber the production Number
    */
@@ -59,7 +59,7 @@ public class ProductionRecord {
   }
 
   /**
-   * This method gets the production number and returns it
+   * This method gets the production number and returns it.
    *
    * @return product ID
    */
@@ -68,7 +68,7 @@ public class ProductionRecord {
   }
 
   /**
-   * This method sets the production ID
+   * This method sets the production ID.
    *
    * @param productID the product ID
    */
@@ -77,7 +77,7 @@ public class ProductionRecord {
   }
 
   /**
-   * This method gets the production number and returns it
+   * This method gets the production number and returns it.
    *
    * @return product number
    */
@@ -86,7 +86,7 @@ public class ProductionRecord {
   }
 
   /**
-   * This method sets the serial Number
+   * This method sets the serial Number.
    *
    * @param serialNumber the Serial Number
    */
@@ -95,7 +95,7 @@ public class ProductionRecord {
   }
 
   /**
-   * This method gets the production Date and returns it
+   * This method gets the production Date and returns it.
    *
    * @return the date produced
    */
@@ -104,7 +104,7 @@ public class ProductionRecord {
   }
 
   /**
-   * This method sets the product Date
+   * This method sets the product Date.
    *
    * @param dateProduced the date produced
    */
@@ -112,11 +112,6 @@ public class ProductionRecord {
     this.dateProduced = dateProduced;
   }
 
-  /**
-   * This method returns a string with the productNumber, productID, serialNumber, and dateProduced
-   *
-   * @return the toString with the value related to the product
-   */
   @Override
   public String toString() {
     return "Prod. Num: " + productionNumber + " Product ID: " + productID + " Serial Num: "

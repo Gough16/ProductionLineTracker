@@ -1,14 +1,14 @@
-package mGough16;
+package mgough16;
 
 /**
- * This ItemType Enum stores the information for each itemType that gets used by our choice box
+ * This ItemType Enum stores the information for each itemType that gets used by our choice box.
  *
  * @author Michael Gough
  * @version 2
  * @since 2019-11-30
  */
 
-public enum ItemType {
+enum ItemType {
 
   AUDIO("AU"),
   VISUAL("VI"),

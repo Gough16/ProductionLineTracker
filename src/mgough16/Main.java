@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * This is the main class of the Production Line Tracker Program
+ * This is the main class of the Production Line Tracker Program.
  *
  * @author Michael Gough
  * @version 1
@@ -23,10 +23,10 @@ public class Main extends Application {
   //control,alt,l to check for style guide
 
   /**
-   * This is where the Javafx program starts
+   * This is where the Javafx program starts.
    *
-   * @param primaryStage stage object primaryStage
-   * @throws Exception throws an exception on input error
+   * @param primaryStage stage object primaryStage.
+   * @throws Exception throws an exception on input error.
    */
 
   @Override
@@ -38,9 +38,9 @@ public class Main extends Application {
   }
 
   /**
-   * This is the main method for the program
+   * This is the main method for the program.
    *
-   * @param args this parameter is not used in the program
+   * @param args this parameter is not used in the program.
    */
   public static void main(String[] args) {
     launch(args);

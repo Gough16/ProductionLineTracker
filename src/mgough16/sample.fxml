@@ -19,7 +19,7 @@
 
 <GridPane alignment="center" hgap="10" prefHeight="457.0" prefWidth="527.0" vgap="10"
   xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="mGough16.Controller">
+  fx:controller="mgough16.Controller">
   <columnConstraints>
     <ColumnConstraints/>
   </columnConstraints>

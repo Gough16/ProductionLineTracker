@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 /**
  * This Movie Player class extends product and implements media control.
@@ -17,8 +17,13 @@ public class MoviePlayer extends Product implements MultimediaControl {
   private int refreshRate;
   private int responseTime;
 
+  /**
+   * This method sets the fields equal to each other.
+   */
   public MoviePlayer(String name, String manufacturer, Screen screen, MonitorType monitorType) {
     super(name, manufacturer, ItemType.VISUAL);
+    //find bugs marks this as unused fields, but we are required
+    // to have them by the sprint guidelines (performance and correctness)
     this.resolution = resolution;
     this.refreshRate = refreshRate;
     this.responseTime = responseTime;

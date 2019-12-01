@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 
 /**
@@ -15,7 +15,9 @@ public class AudioPlayer extends Product implements MultimediaControl {
   private String supportedAudioFormats;
   private String supportedPlaylistFormats;
 
-  //AudioPlayer constructor
+  /**
+   * This overloaded constructor overrides the super constructor.
+   */
   public AudioPlayer(String name, String manufacturer, String supportedAudioFormats,
       String supportedPlaylistFormats) {
 
@@ -27,11 +29,11 @@ public class AudioPlayer extends Product implements MultimediaControl {
   }
 
   /**
-   * To string that returns the supported formats
+   * To string that returns the supported formats.
    */
   public String toString() {
-    return super.toString() + "\n" + ("Supported Audio Formats: " + this.supportedAudioFormats +
-        "\n" + "Supported Playlist Formats: " + this.supportedPlaylistFormats);
+    return super.toString() + "\n" + ("Supported Audio Formats: " + this.supportedAudioFormats
+        + "\n" + "Supported Playlist Formats: " + this.supportedPlaylistFormats);
   }
 
   @Override

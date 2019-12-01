@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 /**
  * This Item interface class gets the items and sets them.

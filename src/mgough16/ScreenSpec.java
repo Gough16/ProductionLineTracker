@@ -1,4 +1,4 @@
-package mGough16;
+package mgough16;
 
 /**
  * ScreenSpec interface holds the fields for resolution, refresh rate, and response time.

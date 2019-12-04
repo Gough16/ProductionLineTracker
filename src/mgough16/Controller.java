@@ -86,6 +86,9 @@ public class Controller {
             choiceBoxItemType.getValue());
     tableViewExistingProducts.getItems().add(productAdded);
 
+    //Load product list called when "Add product button" is selected
+//    loadProductList();
+
     //Print added product to the console when the button is pressed
     System.out.println("Added Product");
 
@@ -100,6 +103,7 @@ public class Controller {
 
     //Setting productProduced equal to the selected items in the listView
     Product productProduced = listViewProduce.getSelectionModel().getSelectedItem();
+    int comboQuantity = comboBoxChooseQuantity.getSelectionModel().getSelectedIndex();
 
     //Number of Products produced
     int itemCount = 0;
@@ -107,7 +111,7 @@ public class Controller {
     //For loop that adds to the text area increments the product count and appends
     //text to the textArea for the productionLog
     for (int productionRunProduct = 0;
-        productionRunProduct <= comboBoxChooseQuantity.getSelectionModel().getSelectedIndex();
+        productionRunProduct <= comboQuantity;
         productionRunProduct++) {
       ProductionRecord pr = new ProductionRecord(productProduced, itemCount++);
 
@@ -118,6 +122,10 @@ public class Controller {
 
     //Prints out "Product recorded" to the console
     System.out.println("Product Recorded");
+
+    //Must call both of these methods when record production ids produced
+//    loadProductionLog();
+//    showProduction();
 
   }
 
@@ -197,9 +205,15 @@ public class Controller {
     ObservableList<Product> data = productList();
     setupProductLineTable(data);
 
-    //Loads the list view with our values
+    //Calls the loadProductList method
     loadProductList(data);
 
+    //Calls the loadProductionLog method
+    loadProductionLog();
+
+  }
+
+  private void loadProductionLog() {
   }
 
   /**

@@ -9,16 +9,26 @@ package mgough16;
  */
 public interface MultimediaControl {
 
-  //Method for play
+  /**
+   * Method for play.
+   */
   void play();
 
-  //Method for stop
+  /**
+   * Method for stop.
+   */
   void stop();
 
   //Method for previous
+
+  /**
+   * Method for previous.
+   */
   void previous();
 
-  //Method for next
+  /**
+   * Method for next.
+   */
   void next();
 
 

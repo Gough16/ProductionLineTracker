@@ -9,12 +9,28 @@ package mgough16;
  */
 public interface ScreenSpec {
 
-  //Issue 3 calls for methods to be public, code style creates a warning for these three methods
-  public String getResolution();
+  /**
+   * <p>Getter methods for resolution, Issue 3 creates a warning for
+   * this method being public but it is required for the project. </p>
+   *
+   * @return
+   */
+  String getResolution();
 
-  public int getRefreshRate();
+  /**
+   * <p>Getter methods for refresh rate, Issue 3 creates a warning for
+   * this method being public but it is required for the project. </p>
+   *
+   * @return
+   */
+  int getRefreshRate();
 
-  public int getResponseTime();
-
+  /**
+   * <p>Getter methods for response time, Issue 3 creates a warning for
+   * this method being public but it is required for the project. </p>
+   *
+   * @return
+   */
+  int getResponseTime();
 
 }

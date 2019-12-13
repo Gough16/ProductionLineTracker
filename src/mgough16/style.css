@@ -1,7 +1,13 @@
+/*
+* Creates a Analyze warning, but is necessary for style in the program.
+*/
 .root{
   -fx-background-color: #0A1A27;
 }
 
+/*
+* Creates a Analyze warning, but is necessary for style in the program.
+*/
 .label{
   -fx-text-fill: white;
 }

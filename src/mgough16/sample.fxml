@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" prefHeight="457.0" prefWidth="527.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="mgough16.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="457.0" prefWidth="527.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mgough16.Controller">
   <columnConstraints>
     <ColumnConstraints />
   </columnConstraints>
@@ -91,8 +91,12 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="68.0" layoutY="90.0" text="First and last name:" />
-                        <TextField layoutX="226.0" layoutY="85.0" prefHeight="27.0" prefWidth="205.0" />
+                        <Label layoutX="94.0" layoutY="50.0" text="Full Name : " />
+                        <TextField fx:id="textFieldEmployeeName" layoutX="226.0" layoutY="45.0" prefHeight="27.0" prefWidth="205.0" />
+                        <Label layoutX="95.0" layoutY="102.0" text="Password : " />
+                        <TextField fx:id="textFieldEmployeePassword" layoutX="226.0" layoutY="97.0" prefHeight="27.0" prefWidth="205.0" />
+                        <ListView fx:id="listViewEmployeeInfo" layoutX="67.0" layoutY="195.0" prefHeight="200.0" prefWidth="393.0" />
+                        <Button layoutX="380.0" layoutY="142.0" mnemonicParsing="false" onAction="#handleAddEmployeeButton" text="Enter" />
                      </children>
                   </AnchorPane>
                </content>

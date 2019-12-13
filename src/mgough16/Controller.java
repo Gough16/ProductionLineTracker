@@ -4,12 +4,17 @@ package mgough16;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -18,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import java.util.Date;
 
 /**
  * This controller class implements the program.
@@ -40,6 +46,8 @@ public class Controller {
   @FXML
   private TableView<Product> tableViewExistingProducts;
 
+  private TableColumn<?, ?> colProductId;
+
   @FXML
   private TableColumn<?, ?> colProductName;
 
@@ -59,37 +67,158 @@ public class Controller {
   private TextArea textAreaProductionLog;
 
   @FXML
-  private TextField textProductionNum;
+  private TextField textFieldEmployeeName;
 
   @FXML
-  private TextField textProductID;
+  private TextField textFieldEmployeePassword;
 
   @FXML
-  private TextField textSerialNum;
+  private ListView<Employee> listViewEmployeeInfo;
 
-  @FXML
-  private TextField textDateProduced;
+
+  private Connection conn;
+  private String pLQuery;
+  private PreparedStatement stmt;
+  private ResultSet result;
 
   /**
-   * <p> This method prints "added product" when the button Add Product is clicked It also
-   * implements the initializeDB method It also adds products to the table view.  </p>
+   * Declaring ObservableList.
+   */
+  private ObservableList<Product> products;
+  private ObservableList<ProductionRecord> records;
+
+  /**
+   * <p> At run time this method: adds values to the comboBox and allows it to be editable gets the
+   * Item Type choices and put them to the choice box adds items from the Observable Array list to
+   * the table view and list view. </p>
+   */
+  public void initialize() {
+
+    //Call the initializeDB method at the beginning of the program
+    initializeDB();
+
+    //Add items to the comboBox at the start of the program
+    comboBoxChooseQuantity.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    //Set comboBox to editable
+    comboBoxChooseQuantity.setEditable(true);
+    //Set the value on the comboBox to the first quantity
+    comboBoxChooseQuantity.getSelectionModel().selectFirst();
+
+    //Add item types to the choice box at the start of the program
+    for (ItemType itemTypeChoices : ItemType.values()) {
+      choiceBoxItemType.getItems().add(itemTypeChoices);
+    }
+
+    //Defining the observable list
+    products = FXCollections.observableArrayList(productDB());
+    records = FXCollections.observableArrayList(productRecordDB());
+
+    //Call testMultimedia method
+//    testMultimedia();
+
+    // Name, Manufacturer, and Type to the table view
+    setupProductLineTable(products);
+
+    //Calls the loadProductList method
+    loadProductList(products);
+
+    //Calls the loadProductionLog method
+    loadProductionLog();
+
+    //Call the showProduction method
+    showProduction(records);
+
+    closeDB();
+
+  }
+
+
+  /**
+   * <p>This method initializes the database and connects to it. This method will also set the
+   * username and password for the db</p>
+   */
+  @FXML
+  private void initializeDB() {
+    try {
+      //Database driver and url
+      final String Jdbc_Driver = "org.h2.Driver";
+
+      //Register JDBC driver
+      Class.forName(Jdbc_Driver);
+
+      //Database Url
+      final String Db_Url = "jdbc:h2:./resources/PLTDB";
+
+      //Database credentials
+      final String User = "";
+      final String Pass = "";
+      //try{
+      // Properties prop = new Properties();
+      //  prop.load(new FileInputStream("resources/properties"));
+      //  Pass = prop.getProperty("password");
+
+      //}catch (Exception ps){
+      //  System.out.println(ps);
+      //}
+
+      //Open a connection with the DB
+      conn = DriverManager.getConnection(Db_Url, User, Pass);
+      //Prints message to the console when the connection is made. This is used for error handling
+      System.out.println("Connection Made");
+
+    } catch (ClassNotFoundException | SQLException e) {
+      //Handle errors for JDBC
+      e.printStackTrace();
+    }
+
+  }
+
+  /**
+   * This method closes the DataBase.
+   */
+  private void closeDB() {
+    try {
+      //clean up the environment
+      result.close();
+      stmt.close();
+      conn.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * <p> This method prints "added product" when the button "Add Product" is clicked. It also
+   * implements the initializeDB method. It also adds products to the table view, and calls
+   * addProducts method to add user input values to the db.  </p>
    */
   @FXML
   protected void handleAddProductButtonAction() {
-    //Establish Database connection
+
+    //Calls initalizeDB method to make a connection with the DB so products can be added
     initializeDB();
 
-    //Gets the text entered text from the user, and adds it to the table view
-    Widget productAdded =
-        new Widget(
-            textFieldProductName.getText(), textFieldManufacturer.getText(),
-            choiceBoxItemType.getValue());
-    tableViewExistingProducts.getItems().add(productAdded);
+    //Gets the text and values for product name, manufacturer and type
+    int Id = 0;
+//    for(Product : ) {
+//
+//    }
+
+    String name = textFieldProductName.getText();
+    String manufacturer = textFieldManufacturer.getText();
+    ItemType type = choiceBoxItemType.getValue();
+    Widget product = new Widget(Id, name, manufacturer, type);
+
+    //Calls addProducts method to add products to the db
+    addProducts(name, manufacturer, type);
+
+    //Add products to the tableView
+    tableViewExistingProducts.getItems().add(product);
 
     //Load product list called when "Add product button" is selected
-//    loadProductList();
+    loadProductList(products);
 
-    //Print added product to the console when the button is pressed
+    //Prints added product to the console when the button is pressed
     System.out.println("Added Product");
 
   }
@@ -100,167 +229,253 @@ public class Controller {
    */
   @FXML
   protected void handleRecordProductionButtonAction() {
-
-    //Setting productProduced equal to the selected items in the listView
-    Product productProduced = listViewProduce.getSelectionModel().getSelectedItem();
-    int comboQuantity = comboBoxChooseQuantity.getSelectionModel().getSelectedIndex();
-
-    //Number of Products produced
     int itemCount = 0;
 
+//    //Get the selection from the listView in the produce tab
+//    ItemType productItem = listViewProduce.getSelectionModel().getSelectedItem().getType();
+//    String productMan = listViewProduce.getSelectionModel().getSelectedItem().getManufacturer();
+    Integer productID = listViewProduce.getSelectionModel().getSelectedItem().getId();
+    Product productProduced = listViewProduce.getSelectionModel().getSelectedItem();
+
+    //Get the selection from the comboBox in the produce tab to use in the for loop
+    int comboQuantity = comboBoxChooseQuantity.getSelectionModel().getSelectedIndex();
+
+    String serialNum =
+        productProduced.getManufacturer().substring(0, 3) + productProduced.getType().code + String
+            .format("%05d", itemCount++);
+
     //For loop that adds to the text area increments the product count and appends
-    //text to the textArea for the productionLog
+    // text to the textArea for the productionLog
     for (int productionRunProduct = 0;
         productionRunProduct <= comboQuantity;
         productionRunProduct++) {
-      ProductionRecord pr = new ProductionRecord(productProduced, itemCount++);
 
-      System.out.println(pr.toString());
-      textAreaProductionLog.appendText(pr.toString());
-      textAreaProductionLog.appendText("\n");
+      ArrayList<ProductionRecord> productionRun = new ArrayList<>(productRecordDB());
+
+      if (productionRun.size() == 0) {
+        int prodNum = 1;
+        ProductionRecord prodRec = new ProductionRecord(productProduced, itemCount++, prodNum++);
+        textAreaProductionLog.appendText("\n");
+        productionRun.add(prodRec);
+        addToProductionDB(productID, serialNum);
+      } else {
+        int prodNum = productionRun.get(productionRun.size() - 1).getProductionNum();
+        ProductionRecord pr = new ProductionRecord(productProduced, itemCount++, prodNum++);
+        textAreaProductionLog.appendText("\n");
+        productionRun.add(pr);
+        addToProductionDB(productID, serialNum);
+      }
+
     }
 
     //Prints out "Product recorded" to the console
     System.out.println("Product Recorded");
 
     //Must call both of these methods when record production ids produced
-//    loadProductionLog();
-//    showProduction();
-
-  }
-
-  /**
-   * This method initialized the database and connects to it The method will allow the addition of
-   * products into the database.
-   */
-  @FXML
-  private void initializeDB() {
-    //Database driver and url
-    final String Jdbc_Driver = "org.h2.Driver";
-    final String DB_Url = "jdbc:h2:./resources/PLTDB";
-
-    //    //Database credentials
-    final String User = "";
-    final String Pass = "";
-    //try{
-    // Properties prop = new Properties();
-    //  prop.load(new FileInputStream("resources/properties"));
-    //  PASS = prop.getProperty("password");
-
-    //}catch (Exception ps){
-    //  System.out.println(ps);
-    //}
-
-    try {
-      //Step 2: Register JDBC driver
-      Class.forName(Jdbc_Driver);
-
-      //Step 3: Open a connection
-      Connection conn = DriverManager.getConnection(DB_Url, User, Pass);
-
-      //Step 4: Execute a query
-      Statement stmt = conn.createStatement();
-
-      String sql = "INSERT INTO Product (type, manufacturer, name)VALUES('AUDIO', 'Apple', 'iPod')";
-
-      stmt.executeUpdate(sql);
-
-      //Step 5: clean up the environment
-      stmt.close();
-      conn.close();
-
-    } catch (ClassNotFoundException | SQLException e) {
-      //Handle errors for JDBC
-      e.printStackTrace();
-    }
-
-  }
-
-  /**
-   * At run time this method: adds values to the comboBox and allows it to be editable gets the Item
-   * Type choices and put them to the choice box adds items from the Observable Array list to the
-   * table view and list view.
-   */
-  public void initialize() {
-
-    //Add items to the comboBox
-    comboBoxChooseQuantity.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
-    //Set comboBox to editable
-    comboBoxChooseQuantity.setEditable(true);
-
-    //Set the value on the comboBox to the first quantity
-    comboBoxChooseQuantity.getSelectionModel().selectFirst();
-
-    //Add item types to the choice box
-    for (ItemType itemTypeChoices : ItemType.values()) {
-      choiceBoxItemType.getItems().add(itemTypeChoices);
-    }
-
-    //Call testMultimedia
-    testMultimedia();
-
-    //Creating an Observable list to hold the content of
-    // Name, Manufacturer, and Type to the table view
-    ObservableList<Product> data = productList();
-    setupProductLineTable(data);
-
-    //Calls the loadProductList method
-    loadProductList(data);
-
-    //Calls the loadProductionLog method
     loadProductionLog();
 
-  }
+    //Call the show production method
+    showProduction(records);
 
-  private void loadProductionLog() {
   }
 
   /**
-   * This method demonstrates the functionality of the UI.
+   * handleEmployeeMethod that gets the employee information and displays it to the listView.
    */
-  public static void testMultimedia() {
-    AudioPlayer newAudioProduct = new AudioPlayer("DP-X1A", "Onkyo",
-        "DSD/FLAC/ALAC/WAV/AIFF/MQA/Ogg-Vorbis/MP3/AAC", "M3U/PLS/WPL");
-    Screen newScreen = new Screen("720x480", 40, 22);
-    MoviePlayer newMovieProduct = new MoviePlayer("DBPOWER MK101", "OracleProduction", newScreen,
-        MonitorType.LCD);
-    ArrayList<MultimediaControl> productList = new ArrayList<MultimediaControl>();
-    productList.add(newAudioProduct);
-    productList.add(newMovieProduct);
-    for (MultimediaControl p : productList) {
-      System.out.println(p);
-      p.play();
-      p.stop();
-      p.next();
-      p.previous();
+  @FXML
+  public void handleAddEmployeeButton() {
+
+    //Gets the entered in information from the user
+    Employee employeeInformation = new Employee(textFieldEmployeeName.getText(),
+        textFieldEmployeePassword.getText());
+
+    //Displays the employee entered information to the screen
+    listViewEmployeeInfo.getItems().add(employeeInformation);
+
+  }
+
+  /**
+   * <p>This method Inserts values (name, manufacturer and ItemType) into the DB, and gets called
+   * from the "HandleAddProductButtonAction" when the user inputs a product and clicks the button.
+   * </p>
+   *
+   * @param name         takes in the String name
+   * @param manufacturer takes in the String manufacturer
+   * @param type         takes in the Item
+   */
+  private void addProducts(String name, String manufacturer, ItemType type) {
+
+    //InitializeDB when a product is added
+    initializeDB();
+
+    //Array of strings named product line that holds the name, manufacturer and type
+    String[] productLine = {name, manufacturer, String.valueOf(type)};
+    int index = 1;
+    try {
+      //Query to insert the product into the DB tables
+      pLQuery = "INSERT INTO PRODUCT(NAME, MANUFACTURER, TYPE) VALUES(?, ?, ?)";
+      stmt = conn.prepareStatement(pLQuery);
+      for (String prod : productLine) {
+        stmt.setString(index, prod);
+        index++;
+      }
+      //execute update
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+  }
+
+  /**
+   * This method gets the values from the Product DB and adds them to the array list.
+   *
+   * @return productLine
+   */
+  private List<Product> productDB() {
+
+    //Initialize the DB
+    initializeDB();
+
+    //ProductLine array list that holds the values from the productDB
+    List<Product> productLine = new ArrayList<>();
+
+    try {
+      //query to select values from the product DB
+      pLQuery = "SELECT * FROM PRODUCT";
+      stmt = conn.prepareStatement(pLQuery);
+      result = stmt.executeQuery();
+
+      //While loop to get the values from the db
+      while (result.next()) {
+        int Id = result.getInt("ID");
+        String name = result.getString("NAME"); //gets Name col
+        String manufacturer = result.getString("MANUFACTURER"); //gets Manufacturer col
+        String type = result.getString("TYPE"); //gets Type col
+
+        //adds name, manufacturer and item type values from the DB to the array list
+        productLine.add(new Product(Id, name, manufacturer, ItemType.valueOf(type)));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    //Return the productLine values to the array list
+    return productLine;
+  }
+
+  /**
+   * This method inserts values into the ProductionRecord DB.
+   */
+  private void addToProductionDB(int ID, String serialNum) {
+    //InitializeDB when recording Products
+    initializeDB();
+
+    try {
+      SimpleDateFormat format = new SimpleDateFormat(" ");
+      Date now = new Date();
+      Timestamp ts = new Timestamp(now.getTime());
+
+      //Insert products into the ProductionRecord Db based on values from the selected list view
+      pLQuery = "INSERT INTO PRODUCTIONRECORD(PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED) VALUES(?, ?, ?)";
+      stmt = conn.prepareStatement(pLQuery);
+
+      //Set the values into the index of the DB
+      stmt.setInt(1, ID);
+      stmt.setString(2, serialNum);
+      stmt.setTimestamp(3, ts);
+
+      //execute update
+      stmt.executeUpdate();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      closeDB();
+    }
+  }
+
+  /**
+   * <p> This method selects productionRecord values from the ProductionRecord DB and adds them to
+   * the array list "record List". </p>
+   *
+   * @return recordList
+   */
+  private List<ProductionRecord> productRecordDB() {
+    //Call the initialize Db method
+    initializeDB();
+    //Initialize array list with value from the db
+    List<ProductionRecord> recordList = new ArrayList<>();
+    try {
+      //query to select values from the ProductionRecord DB
+      pLQuery = "SELECT * FROM PRODUCTIONRECORD";
+      stmt = conn.prepareStatement(pLQuery);
+      result = stmt.executeQuery();
+
+      //While loop the gets values that are stored in the DB col
+      while (result.next()) {
+        int prodNum = result.getInt("PRODUCTION_NUM");
+        int productID = result.getInt("PRODUCT_ID");
+        String serialNum = result.getString("SERIAL_NUM");
+        Timestamp dateProd = result.getTimestamp("DATE_PRODUCED");
+
+        //Adds values from the ProductionRecord Db that and stores them in the recordList
+        recordList.add(new ProductionRecord(prodNum, productID, serialNum, dateProd));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      closeDB();
+    }
+    //return the record list values to the array
+    return recordList;
+
   }
 
   /**
    * This method adds values from the observable array list to the list view.
    */
-  private void loadProductList(ObservableList<Product> data) {
-    //add data from the observable array list to the list view
-    listViewProduce.setItems(data);
+  private void loadProductList(ObservableList<Product> products) {
+
+    //add products from the observable array list to the list view
+    listViewProduce.setItems(products);
   }
 
   /**
-   * This method adds values to the observable array list.
+   * <p>This Method will create ProductionRecord objects from the records in the ProductionRecord
+   * database Table. </p>
    */
-  private ObservableList<Product> productList() {
-    return FXCollections.observableArrayList(
-        new Product("iPod", "Apple", ItemType.AUDIO),
-        new Product("iPhone", "Apple", ItemType.AUDIO_MOBILE),
-        new Product("AirPods", "Apple", ItemType.AUDIO)
-    );
+  private void loadProductionLog() {
+    ObservableList<ProductionRecord> recordList = FXCollections
+        .observableArrayList(productRecordDB());
+    for (ProductionRecord obj : recordList) {
+      String productID = String.valueOf(obj.getProductID());
+      String prodNum = String.valueOf(obj.getProductionNum());
+      String serialNum = String.valueOf(obj.getSerialNum());
+      Date dateProd = obj.getProdDate();
+      ProductionRecord records = new ProductionRecord(Integer.parseInt(prodNum),
+          Integer.parseInt(productID), serialNum, dateProd);
+      textAreaProductionLog.appendText("\n");
+    }
+
+    //Call the showProduction method
+    showProduction(records);
+
   }
 
+  private void showProduction(ObservableList<ProductionRecord> records) {
+    //Initialize Db values for the text area
+    initializeDB();
+
+    textAreaProductionLog.appendText(String.valueOf(records));
+  }
+
+
   /**
-   * This method sets the values of the observable array list to the column it also adds the items
-   * to the table and list view.
+   * <p>This method sets the values of the observable array list to the column it also adds the
+   * items to the table and list view. </p>
+   *
+   * @param products Takes observable list products
    */
-  private void setupProductLineTable(ObservableList<Product> data) {
+  private void setupProductLineTable(ObservableList<Product> products) {
 
     //set the sell value with the observable array list value
     colProductName.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -268,8 +483,30 @@ public class Controller {
     colProductType.setCellValueFactory(new PropertyValueFactory<>("Type"));
 
     //set the items from the observable array list to the table view
-    tableViewExistingProducts.setItems(data);
+    tableViewExistingProducts.setItems(products);
   }
+
+//  /**
+//   * This method demonstrates the functionality of the UI, required part of Week 8, issue 3.
+//   */
+//  private static void testMultimedia() {
+//    AudioPlayer newAudioProduct = new AudioPlayer("DP-X1A", "Onkyo",
+//        "DSD/FLAC/ALAC/WAV/AIFF/MQA/Ogg-Vorbis/MP3/AAC", "M3U/PLS/WPL");
+//    Screen newScreen = new Screen("720x480", 40, 22);
+//    MoviePlayer newMovieProduct = new MoviePlayer("DBPOWER MK101", "OracleProduction", newScreen,
+//        MonitorType.LCD);
+//    //"New ArrayList <MultimediaControl>" creates a warning, but is sample code in the project
+//    ArrayList<MultimediaControl> productList = new ArrayList<MultimediaControl>();
+//    productList.add(newAudioProduct);
+//    productList.add(newMovieProduct);
+//    for (MultimediaControl p : productList) {
+//      System.out.println(p);
+//      p.play();
+//      p.stop();
+//      p.next();
+//      p.previous();
+//    }
+//  }
 
 }
 

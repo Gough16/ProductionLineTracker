@@ -1,37 +1,20 @@
-# Michael Gough's ReadME 
-## Production Line Tracker OOP
+# Production Line Tracker
+## Object-Oriented Programming(OOP) Project
 This program is software for a media player production facility.
 I am programming this as my first object oriented project in my junior year at Florida Gulf Coast University.
 
-## License
+## Demonstration 
 
-This project is licensed under the MIT License.
+## Documentation 
 
-## Getting Started -> Software needed
-
-In order to get this project running, on your local computer for demonstration/testing, 
-you must have Intellij (IDE) installed on your computer. 
-Once you have that installed, you will get the link to this repository and pull it to you
-intellij program to get it running.
-
-## Built With
-
-* IDE's Used:
-    * Intellij
-    * SceneBuilder
-
-## Author
-
-Michael Gough
-
-## Sprint 1 
+### Sprint 1 
 
 During this sprint, in the development of the media player production, 
 I implement Gui into the project by adding buttons, a comboBox and text fields. 
 This sprint also involves connecting to a database for the first time, inserting values 
 and displaying those values to the console.
 
-## Sprint 2
+### Sprint 2
 
 During sprint 2, I began by setting up an enum that would store information for the Item type.
 I then set up an interface that would force all classes to implement certain methods that were 
@@ -46,7 +29,7 @@ that I use to set the instance variable. The ProductionRecord class is used for 
 productionRecord database. This allows us to print the product to the text area with a to string and 
 display the products that have been produced. 
 
-## Sprint 3
+### Sprint 3
 
 During sprint 3, I implemented adding products to the database by accepting user input. Once I accepted 
 the users information, I was able to add that information to the DB with methods that inserted the 
@@ -56,8 +39,35 @@ sprint that allows the user to enter in their information into text fields and d
 username, password, email, and temporary password to a list view (does not store the information, but 
 could be implemented later on). This sprint includes handling error, that eliminates the user from  
 accidentally adding in blank values for product that could cause problems in the database and flow of 
-the overall program. 
-  
+the overall program.
+
+## Diagrams
+
+## Getting Started -> Software needed
+
+In order to get this project running, on your local computer for demonstration/testing, 
+you must have Intellij (IDE) installed on your computer. 
+Once you have that installed, you will get the link to this repository and pull it to you
+intellij program to get it running.
+
+## Built With
+
+* IDE's Used:
+    * Intellij
+    * SceneBuilder
+    
+## Author
+
+Michael Gough
+
+## License
+
+This project is licensed under the MIT License.
+
+## Author
+
+Michael Gough
+
 ## Acknowledgments
 
 * Professor Scott Vanselow

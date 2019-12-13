@@ -4,7 +4,7 @@ package mgough16;
  * Screen class implements the ScreenSpec and gets the resolution, refresh rate and response time.
  *
  * @author Michael Gough
- * @version 2
+ * @version 3
  * @since 2019-11-30
  */
 public class Screen implements ScreenSpec {

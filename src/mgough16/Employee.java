@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * information that the user has entered. </p>
  *
  * @author Michael Gough
- * @version 2
+ * @version 3
  * @since 2019-11-30
  */
 public class Employee {
@@ -77,7 +77,9 @@ public class Employee {
    * @return returns a true or false value for the name being a valid format
    */
   private boolean checkName(String name) {
-    //Uses regex to check the users input to see if it passes
+    /*
+    * Uses regex to check the users input to see if it passes
+    */
     String regex = ".+ .+";
     Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
     Matcher matcher = pattern.matcher(name);
@@ -91,6 +93,9 @@ public class Employee {
    * @param name String name used for the email
    */
   private void setEmail(String name) {
+    /*
+    * Sets the email with the value of the users name with an email type String at the end of it.
+    */
     this.email = name + "@oracleacademy.Test";
   }
 
@@ -110,6 +115,9 @@ public class Employee {
    * @return a boolean value of true or false if the password passed our regex
    */
   private boolean isValidPassword(String password) {
+    /*
+    * Regular expression used to test if the user password is valid
+    */
     String regex = "^(?=.*[!@#$%^&*()\\-+=]+.*)(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[\\x21-\\x7e]{3,}$";
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(password);

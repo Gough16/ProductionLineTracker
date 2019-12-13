@@ -4,7 +4,7 @@ package mgough16;
  * This Item interface class forces all classes to implement the functions inside of its class.
  *
  * @author Michael Gough
- * @version 2
+ * @version 3
  * @since 2019-12-8
  */
 public interface Item {

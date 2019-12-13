@@ -4,10 +4,9 @@ package mgough16;
  * This Movie Player class extends product and implements media control.
  *
  * @author Michael Gough
- * @version 2
+ * @version 3
  * @since 2019-11-30
  */
-
 public class MoviePlayer extends Product implements MultimediaControl {
 
   /**
@@ -27,10 +26,13 @@ public class MoviePlayer extends Product implements MultimediaControl {
    * @param screen       accepts the screen
    * @param monitorType  accepts the monitorType
    */
-  public MoviePlayer(int Id, String name, String manufacturer, Screen screen, MonitorType monitorType) {
+  public MoviePlayer(int Id, String name, String manufacturer, Screen screen,
+      MonitorType monitorType) {
     super(Id, name, manufacturer, ItemType.VISUAL);
-    //find bugs marks this as unused fields, but we are required
-    // to have them by the sprint guidelines for the replit test (performance and correctness)
+    /*
+     * find bugs marks this as unused fields, but we are required
+     * to have them by the sprint guidelines for the replit test (performance and correctness)
+     */
     this.resolution = resolution;
     this.refreshRate = refreshRate;
     this.responseTime = responseTime;

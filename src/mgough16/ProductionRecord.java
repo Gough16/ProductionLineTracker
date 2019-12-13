@@ -7,7 +7,7 @@ import java.util.Date;
  * information.
  *
  * @author Michael Gough
- * @version 2
+ * @version 3
  * @since 2019-11-30
  */
 public class ProductionRecord {
@@ -140,8 +140,8 @@ public class ProductionRecord {
    */
   @Override
   public String toString() {
-    return "Prod. Num: " + productionNumber + " Product ID: " + productID + " Serial Num: "
-        + serialNumber + " Date: " + dateProduced;
+    return "Prod. Num: " + this.productionNumber + " Product ID: " + this.productID + " Serial Num: "
+        + this.serialNumber + " Date: " + this.dateProduced + "\n";
   }
 
 }

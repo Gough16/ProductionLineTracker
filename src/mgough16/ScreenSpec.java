@@ -4,7 +4,7 @@ package mgough16;
  * ScreenSpec interface holds the fields for resolution, refresh rate, and response time.
  *
  * @author Michael Gough
- * @version 2
+ * @version 3
  * @since 2019-11-30
  */
 public interface ScreenSpec {

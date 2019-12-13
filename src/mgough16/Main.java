@@ -5,22 +5,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 /**
  * This is the main class of the Production Line Tracker Program.
  *
  * @author Michael Gough
- * @version 1
+ * @version 3
  * @since 2019-10-07
  */
-
 public class Main extends Application {
-  //Inspection analysis for quality in your code:
-  //Analyze inspect code, if no suspects found then that
-  //Is a good sign that we have done the right thing
-  //file, settings, plugins, find bugs... if 0 bugs then we
-  //are in good work
-  //control,alt,l to check for style guide
+  /*
+  * Inspection analysis for quality in your code:
+  * Analyze inspect code, if no suspects found then that
+  * Is a good sign that we have done the right thing
+  * file, settings, plugins, find bugs... if 0 bugs then we
+  * are in good work
+  * control,alt,l to check for style guide
+  */
 
   /**
    * This is where the Javafx program starts.
@@ -28,7 +28,6 @@ public class Main extends Application {
    * @param primaryStage stage object primaryStage.
    * @throws Exception throws an exception on input error.
    */
-
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));

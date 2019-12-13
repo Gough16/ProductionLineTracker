@@ -4,10 +4,9 @@ package mgough16;
  * This MonitorType Enum stores the information for the different type of monitor displays.
  *
  * @author Michael Gough
- * @version 2
+ * @version 3
  * @since 2019-11-30
  */
-
 public enum MonitorType {
 
   /**

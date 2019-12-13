@@ -4,7 +4,7 @@ package mgough16;
  * Product Class has fields, constructor, and methods to get the product entered by the user.
  *
  * @author Michael Gough
- * @version 2
+ * @version 3
  * @since 2019-11-30
  */
 public class Product implements Item {

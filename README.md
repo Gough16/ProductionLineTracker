@@ -1,4 +1,4 @@
-# Michael Gough's ReadME Production Tracker
+# Michael Gough's ReadME 
 ## Production Line Tracker OOP
 This program is software for a media player production facility.
 I am programming this as my first object oriented project in my junior year at Florida Gulf Coast University.

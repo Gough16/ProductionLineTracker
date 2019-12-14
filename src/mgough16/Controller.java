@@ -33,47 +33,85 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class Controller {
 
+  /**
+   * Initializing FXML text field for productName
+   */
   @FXML
   private TextField textFieldProductName;
 
+  /**
+   * Initializing FXML text field for productManufacturer
+   */
   @FXML
   private TextField textFieldManufacturer;
 
+  /**
+   * Initializing FXML choiceBox for ItemType
+   */
   @FXML
   private ChoiceBox<ItemType> choiceBoxItemType;
 
+  /**
+   * Initializing FXML TableView for product line
+   */
   @FXML
   private TableView<Product> tableViewExistingProducts;
 
-  private TableColumn<?, ?> colProductId;
-
+  /**
+   * Initializing FXML Table column for product name that will have the product name
+   */
   @FXML
   private TableColumn<?, ?> colProductName;
 
+  /**
+   * Initializing FXML Table column product manufacturer that will have the name of the
+   * manufacturer
+   */
   @FXML
   private TableColumn<?, ?> colProductManufacturer;
 
+  /**
+   * Initializing FXML Table column for product type that will have the types displayed in it
+   */
   @FXML
   private TableColumn<?, ?> colProductType;
 
+  /**
+   * Initializing the FXML ListView for produce that hold the products that have been produced
+   */
   @FXML
   private ListView<Product> listViewProduce;
 
+  /**
+   * Initializing FXML comboBox that has the values for the number of products that can be produced
+   */
   @FXML
   private ComboBox<Integer> comboBoxChooseQuantity;
 
+  /**
+   * Initializing FXML text area for the production log tab that will store the toString from the
+   * ProductionRecord class and show the production record of the products that have been produced
+   */
   @FXML
   private TextArea textAreaProductionLog;
 
+  /**
+   * Initializing FXML text field for employeeName
+   */
   @FXML
   private TextField textFieldEmployeeName;
 
+  /**
+   * Initializing FXML text field for employeePassword
+   */
   @FXML
   private TextField textFieldEmployeePassword;
 
+  /**
+   * Initializing FXML listView for employee info
+   */
   @FXML
   private ListView<Employee> listViewEmployeeInfo;
-
 
   private Connection conn;
   private String pLQuery;
@@ -204,7 +242,7 @@ public class Controller {
       Alert error = new Alert(AlertType.WARNING);
       error.setAlertType(AlertType.WARNING);
       //Display an error message to the user for error handling
-      error.setContentText("Enter in valid information");
+      error.setContentText("Enter in valid product description");
       error.show(); //Show error
     } else {
 
@@ -247,7 +285,7 @@ public class Controller {
       Alert error = new Alert(AlertType.WARNING);
       error.setAlertType(AlertType.WARNING);
       //Display an error message to the user for error handling
-      error.setContentText("Enter in valid information");
+      error.setContentText("Select a product to produce");
       error.show(); //Show error
     } else {
 
@@ -312,8 +350,8 @@ public class Controller {
         .equals("")) {
       Alert error = new Alert(AlertType.WARNING);
       error.setAlertType(AlertType.WARNING);
-      //Display an error message to the user when the textFields arent filled
-      error.setContentText("Enter in valid information");
+      //Display an error message to the user when the textFields aren't filled
+      error.setContentText("Enter in user information");
       error.show();
     } else {
       //Gets the entered information from the user
@@ -446,8 +484,7 @@ public class Controller {
 
   /**
    * <p> This method will load the production items from the ProductionRecord DB. We get the items
-   * from
-   * the DB and append them to the text area. </p>
+   * from the DB and append them to the text area. </p>
    *
    * @param records for the observableList ProductionRecord
    * @return the values of the ObservableList for the ProductionRecord
@@ -485,7 +522,8 @@ public class Controller {
   }
 
   /**
-   * <p> This method is use to showProduction to the text area. We do so by passing the ObservableList
+   * <p> This method is use to showProduction to the text area. We do so by passing the
+   * ObservableList
    * of ProductionRecord items into the parameters. we then loop the the List and append the text of
    * the items to the text area to display the ProductionRecord. </p>
    *
@@ -524,7 +562,6 @@ public class Controller {
     // Set the items from the observable array list to the table view
     tableViewExistingProducts.setItems(products);
   }
-
 
 //  /**
 //   * This method demonstrates the functionality of the UI, required part of Week 8, issue 3.

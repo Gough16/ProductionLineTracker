@@ -1,6 +1,7 @@
 package mgough16;
 
 import java.util.Date;
+import javafx.collections.ObservableList;
 
 /**
  * This ProductionRecord Class gets the information from the user sets it to the production record
@@ -21,7 +22,7 @@ public class ProductionRecord {
   private Date dateProduced;
 
   /**
-   * <p>ProductionRecord constructor that sets the productionNumber, serialNumber and dateProduced
+   * <p> ProductionRecord constructor that sets the productionNumber, serialNumber and dateProduced
    * to values. </p>
    *
    * @param productID takes int productID
@@ -33,7 +34,7 @@ public class ProductionRecord {
   }
 
   /**
-   * <p>ProductionRecord constructor that sets the productionNumber, serialNumber, dateProduced
+   * <p> ProductionRecord constructor that sets the productionNumber, serialNumber, dateProduced
    * and productID to values. </p>
    *
    * @param productionNumber accepts int productionNumber
@@ -143,5 +144,6 @@ public class ProductionRecord {
     return "Prod. Num: " + this.productionNumber + " Product ID: " + this.productID + " Serial Num: "
         + this.serialNumber + " Date: " + this.dateProduced + "\n";
   }
+
 
 }

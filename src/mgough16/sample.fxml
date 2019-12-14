@@ -27,7 +27,7 @@
   <children>
     <TabPane prefHeight="505.0" prefWidth="605.0" tabClosingPolicy="UNAVAILABLE">
       <tabs>
-        <Tab text="Production Line">
+        <Tab text="Product Line">
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>

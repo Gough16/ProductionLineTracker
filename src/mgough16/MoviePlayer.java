@@ -29,10 +29,10 @@ public class MoviePlayer extends Product implements MultimediaControl {
   public MoviePlayer(int Id, String name, String manufacturer, Screen screen,
       MonitorType monitorType) {
     super(Id, name, manufacturer, ItemType.VISUAL);
-    /*
-     * find bugs marks this as unused fields, but we are required
-     * to have them by the sprint guidelines for the replit test (performance and correctness)
-     */
+
+     // find bugs marks this as unused fields, but we are required
+     // to have them by the sprint guidelines for the replit test (performance and correctness)
+     //
     this.resolution = resolution;
     this.refreshRate = refreshRate;
     this.responseTime = responseTime;
@@ -50,7 +50,7 @@ public class MoviePlayer extends Product implements MultimediaControl {
   }
 
   /**
-   * <p>Implementing the play method from MultimediaControl interface
+   * <p> Implementing the play method from MultimediaControl interface
    * Prints "Playing movie" to the screen. </p>
    */
   @Override

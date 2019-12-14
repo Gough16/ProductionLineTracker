@@ -9,9 +9,8 @@ package mgough16;
  */
 public enum MonitorType {
 
-  /**
-   * Code style creates a warning for the "unnecessary semicolon" which is necessary.
-   */
+
+   // Code style creates a warning for the "unnecessary semicolon" which is necessary.
   Type, LCD, LED
 
 }

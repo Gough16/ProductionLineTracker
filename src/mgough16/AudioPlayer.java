@@ -1,4 +1,5 @@
 package mgough16;
+
 /**
  * This AudioPlayer class extends Product and implements MultimediaControl.
  *
@@ -27,14 +28,13 @@ public class AudioPlayer extends Product implements MultimediaControl {
   public AudioPlayer(int Id, String name, String manufacturer, String supportedAudioFormats,
       String supportedPlaylistFormats) {
 
-    /*
-    * Call the parent constructor
-    */
+    // Call the parent constructor
     super(Id, name, manufacturer, ItemType.AUDIO);
     this.supportedAudioFormats = supportedAudioFormats;
     this.supportedPlaylistFormats = supportedPlaylistFormats;
 
   }
+
 
   /**
    * To string that returns the supported formats.

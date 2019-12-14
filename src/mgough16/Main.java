@@ -13,14 +13,13 @@ import javafx.stage.Stage;
  * @since 2019-10-07
  */
 public class Main extends Application {
-  /*
-  * Inspection analysis for quality in your code:
-  * Analyze inspect code, if no suspects found then that
-  * Is a good sign that we have done the right thing
-  * file, settings, plugins, find bugs... if 0 bugs then we
-  * are in good work
-  * control,alt,l to check for style guide
-  */
+
+  // Inspection analysis for quality in your code:
+  // Analyze inspect code, if no suspects found then that
+  // Is a good sign that we have done the right thing
+  // file, settings, plugins, find bugs... if 0 bugs then we
+  // are in good work
+  // control,alt,l to check for style guide
 
   /**
    * This is where the Javafx program starts.
@@ -32,7 +31,7 @@ public class Main extends Application {
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
     primaryStage.setTitle("Production Line Tracker");
-    primaryStage.setScene(new Scene(root, 300, 275));
+    primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
 

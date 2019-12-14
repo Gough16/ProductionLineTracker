@@ -16,5 +16,9 @@
   -fx-text-fill: black;
 }
 
+.table-view .label{
+  -fx-text-fill: #0A1A27;
+}
+
 
 

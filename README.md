@@ -1,5 +1,6 @@
 # Production Line Tracker
 ## Object-Oriented Programming(OOP) Project
+
 This program is software for a media player production facility.
 I am programming this as my first object oriented project in my junior year at Florida Gulf Coast University.
 
@@ -71,9 +72,10 @@ Michael Gough
 ## Acknowledgments
 
 * Professor Scott Vanselow
-* Stacked overflow
-* GeeksForGeeks
+* Stacked overflow -> styling css (listView)
+* GeeksForGeeks -> method overloading 
 * Oracle
+* Regex 101 -> regular expression 
 
 ## History
 

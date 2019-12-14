@@ -5,6 +5,17 @@ This program is software for a media player production facility.
 I am programming this as my first object oriented project in my junior year at Florida Gulf Coast University.
 
 ## Demonstration 
+### Adding a product 
+![Gif Demonstration of adding a product](https://media.giphy.com/media/gM0e1yIwNe6RLSwXhO/giphy.gif)
+
+### Producing a product
+![Gif Demonstration of producing a product](https://media.giphy.com/media/SpolCZ9n00FJ9sE33M/giphy.gif)
+
+### Displaying employee information
+![Gif Demonstration of employee information](https://media.giphy.com/media/fwndSWSOcNXh7gqHOf/giphy.gif)
+
+### Handling errors
+![Gif Demonstration of error handling](https://media.giphy.com/media/lOm0hNxnsRG1poMRVI/giphy.gif)
 
 ## Documentation 
 
@@ -76,6 +87,7 @@ Michael Gough
 * GeeksForGeeks -> method overloading 
 * Oracle
 * Regex 101 -> regular expression 
+* https://giphy.com -> creation of gif
 
 ## History
 

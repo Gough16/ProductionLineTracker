@@ -53,7 +53,6 @@ could be implemented later on). This sprint includes handling error, that elimin
 accidentally adding in blank values for product that could cause problems in the database and flow of 
 the overall program.
 
-## Diagrams
 
 ## Getting Started -> Software needed
 
